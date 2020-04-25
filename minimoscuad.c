@@ -66,8 +66,8 @@ void main(){
 	double b = (numDatos*sumXY - sumX*sumY)/Den;
 	printf("mejor linea de fit para los datos: %.5lf*x + %.5lf\n", a, b);
 
-	system("gnuplot");
-	system("plot [-3:3] x**2");
+//	system("gnuplot");
+//	system("plot [-3:3] x**2");
 
 
 
