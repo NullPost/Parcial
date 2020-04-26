@@ -78,13 +78,5 @@ void main(){
 	fprintf(fPtf,"f(x) = %f*x + %f", b, a);
 	fclose(fPtf);
 
-
-
-
-
-
-
-
-
 }
 		

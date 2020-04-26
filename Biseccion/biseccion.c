@@ -1,6 +1,6 @@
 
 /* 
-Autor: nullpost-VirtualBox
+Autor: Mario Guerra
 Compilador: gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
 Compilado: gcc biseccion.c -o biseccion
 Fecha: Sat Apr 25 12:03:33 CST 2020
@@ -30,6 +30,12 @@ void main(){
 	float x0 = bis(rangInf, rangSup, pres);
 
 	printf("\nMejor aproximacion: f(%.6f) = %.6f\n", x0, f(x0));
+
+	FILE * fPtf;
+	fPtf = fopen("configgp.gp", "w");
+	fprintf(fPtf,"f(x) = 2 + cos(exp(x) - 2) -exp(x)\nset arrow from %f,graph(0,0) to %f,graph(1,1) nohead",x0,x0);
+	fclose(fPtf);
+
 }
 
 float f(float x){
