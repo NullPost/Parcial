@@ -13,4 +13,6 @@ printf "\nreplot 'semanas.dat'" >> configgp.gp
 gnuplot -p "configgp.gp"
 #borrando las preferencias
 rm configgp.gp
+#borrando ejecutable
+rm min
 
