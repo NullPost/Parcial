@@ -16,6 +16,7 @@ Salida: los mejores coeficientes a y b que describen a los datos como una linea 
 //numerar los pasos de pseudocodigo
 
 void main(){
+	//iniciando variables, una por sumatoria necesaria para la formula
 	float numDatos = 10;
 	float datosY[10] = {20.2 , 20.9, 20.6 ,21.3 ,21.75 ,22.05 ,23.62 ,22.92 ,23.8 ,23.85};
 	double sumX = 0;
@@ -23,6 +24,7 @@ void main(){
 	double sumX2 = 0;
 	double sumY2 = 0;
 	double sumXY = 0;
+	//listando los datos dados
 	printf("Este programa calcula el mejor fit lineal para una serie de datos que cambian semana por semana\n");
 	printf("Datos en memoria: \n");
 	for(int i = 0; i < numDatos; i++){
@@ -33,21 +35,25 @@ void main(){
 		sumX += i;
 	}
 //	printf("sumX %.5lf\n", sumX);
+
 //Sumatorioa de datos yi
 	for(int i = 0; i < numDatos; i++){
 		sumY += datosY[i];
 	}
 //	printf("sumY %.5lf\n", sumY);
+
 //Sumatoria Xi^2
 	for(int i = 1; i <= numDatos; i++){
 		sumX2 += i*i;
 	}
 	//printf("sumX2 %.5lf\n", sumX2);
+
 //Sumatoria Yi^2
 	for(int i = 0; i < numDatos; i++){
 		sumY2 += datosY[i]*datosY[i];
 	}
 //	printf("sumY2 %.5lf\n", sumY2);
+
 //Sumatoria Xi*Yi
 	for(int i = 0; i < numDatos; i++){
 		sumXY += datosY[i]*(i + 1);
@@ -58,11 +64,12 @@ void main(){
 	double Den = numDatos*sumX2 - sumX*sumX; 
 
 //	coeficientes
-//	a
+//	a, corte con y
 	double a = (sumY*sumX2 - sumX*sumXY)/Den;
-//	b
+//	b, pendiente de la linea
 	double b = (numDatos*sumXY - sumX*sumY)/Den;
 	printf("mejor linea de fit para los datos: %.5lf*x + %.5lf\n", b, a);
+//	calculo de la semana tal que b*x + a = 30
 	printf("semana que el combustible llega a Q 30.00: semana %.1f\n", (30 - a)/b);
 
 /* GENERANDO DATOS */
@@ -73,7 +80,7 @@ void main(){
 		fprintf(fPtf,"%d\t%.2f\n", i+1, datosY[i]);
 	}
 	fclose(fPtf);
-/* GENERANDO ARCHIVO DE CONFIGURACION GNUPLO*/
+/* GENERANDO ARCHIVO DE CONFIGURACION GNUPLOT*/
 	fPtf = fopen("configgp.gp", "w");
 	fprintf(fPtf,"f(x) = %f*x + %f", b, a);
 	fclose(fPtf);
